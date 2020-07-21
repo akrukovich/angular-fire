@@ -1,0 +1,25 @@
+<div *ngIf="post; else loader">
+  <app-header [header]="post.source"></app-header>
+  <div class="container w-75 mt-3">
+    <div class="row border border-dark p-1 mb-2">
+      <div class="col-3">
+        <img class="img-fluid" src="{{ post.imgUrl }}" alt="img" />
+      </div>
+      <div class="col-9 d-flex">
+        <div class="align-self-center">
+          <h3>{{ post.heading }}</h3>
+          <p>{{ post.content }}</p>
+          <p>Date: {{ post.date | date: "dd/MM/yy hh:mm" }}</p>
+          <p>Author: {{ post.author }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="d-flex justify-content-center text-success">
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-around">
+  <div ngbDropdown class="d-inline-block">
+    <button
+      class="btn btn-outline-warning"
+      id="dropdownBasic1"
+      ngbDropdownToggle
+    >
+      Select Source
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button (click)="selectHandler($event)" ngbDropdownItem *ngFor="let source of sources">
+        {{ source.source | titlecase}}
+      </button>
+    </div>
+  </div>
+  <div class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="filter"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="filter"
+        placeholder="Type your text..."
+        [(ngModel)]="searchValue"
+      />
+    </div>
+    <button type="submit" class="btn btn-danger mb-2"(click)="filterPosts()">Filter</button>
+  </div>
+  <button type="button" class="btn btn-dark" [routerLink]="['/add-post']">
+    Add Article
+  </button>
+</div>

@@ -1,0 +1,82 @@
+<app-header [header]="'create news'"></app-header>
+<div>
+  <form [formGroup]="form" (reset)="reset()" (ngSubmit)="submit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="heading">Heading</label>
+        <input
+          type="text"
+          class="form-control"
+          id="heading"
+          formControlName="heading"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="date">Date</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="date"
+          formControlName="date"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="description">Short description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          class="form-control"
+          id="author"
+          formControlName="author"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="content">Content</label>
+        <textarea
+          class="form-control"
+          id="content"
+          rows="6"
+          formControlName="content"
+        ></textarea>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="url">Image url</label>
+        <input
+          type="text"
+          class="form-control"
+          id="url"
+          formControlName="imgUrl"
+        />
+        <label for="source">Source</label>
+        <input
+          type="text"
+          class="form-control mb-2"
+          id="source"
+          formControlName="source"
+        />
+        <div class="d-flex justify-content-between">
+          <button
+            type="submit"
+            class="btn btn-primary px-5"
+            [disabled]="!form.valid"
+          >
+            Save
+          </button>
+          <button type="reset" class="btn btn-danger px-5">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

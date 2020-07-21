@@ -1,0 +1,47 @@
+<app-header [header]="source"></app-header>
+<div class="py-4 bg-primary mb-3">
+  <app-top-menu
+    (onSelectSource)="filterBySource($event)"
+    (onFilter)="filterPosts($event)"
+  ></app-top-menu>
+</div>
+<div class="container w-75 pb-5" *ngIf="posts; else loader">
+  <div
+    class="post row bg-white border border-success rounded p-1 mb-2"
+    *ngFor="
+      let post of posts
+        | filter: searchValue
+        | searchBySource: source
+        | paginate: { itemsPerPage: 2, currentPage: p }
+    "
+  >
+    <div class="col-3 d-flex align-items-center">
+      <img
+        class="img-fluid rounded"
+        style="height: 150px;"
+        src="{{ post.imgUrl }}"
+        alt="img"
+      />
+    </div>
+    <div class="col-6 d-flex">
+      <div class="align-self-center">
+        <h3>{{ post.heading }}</h3>
+        <p>{{ post.description }}</p>
+        <p><a [routerLink]="[post.id]">Read more...</a></p>
+      </div>
+    </div>
+    <div class="col-3">
+      <p>Date: {{ post.date | date: "dd/MM/yy hh:mm" }}</p>
+    </div>
+  </div>
+  <div class="text-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="d-flex justify-content-center text-success">
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
